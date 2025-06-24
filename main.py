@@ -11,13 +11,14 @@ import usocket
 ## MQTT-Client ##
 from umqtt.simple import MQTTClient
 ## Busverarbeitung ##
-from machine import dht, Pin
+import dht
+from machine import Pin
 ## Deepsleep ##
 from machine import deepsleep
 ## Time ##
 import time
 ## OTA ##
-import ota
+from ota import OTAUpdater
 
 ###################################################################
 #################### Variablen ####################################
@@ -40,9 +41,6 @@ sensor_dht = dht.DHT11(Pin(4))
 ssid = "BZTG-IoT"
 password = "WerderBremen24"
 
-# OTA Update URL
-UPDATE_URL = "http://192.168.1.170/main.py"  # IP-Adresse deines Rechners im Netzwerk
-
 # MQTT-Broker Verbindungsinformationen
 BROKER = "192.168.1.170" # Zugewiesene IP für den Laptop (Eingabeaufforderung befehl ipconfig; IP4v Adresse)
 CLIENT_ID = "127.0.0.1"
@@ -58,6 +56,15 @@ try:
     print("Broker erreichbar")
 except:
     print("Broker nicht erreichbar")
+
+###################################################################
+############ OTA Updater ##########################################
+    
+ota_updater = OTAUpdater(
+    ssid="BZTG-IoT",
+    password="WerderBremen24",
+    repo_url="https://github.com/HannesRuhe/O.T.A/",
+    filename="main.py")
 
 ###################################################################
 ############ MQTT-Client initialisieren ###########################
@@ -152,11 +159,8 @@ def TempMessung():
 #################### Hauptprogramm ################################
         
 while True:
-    WLAN()
-    #########################################
-    # OTA-Update prüfen und ggf. durchführen
-    ota.check_for_updates("main.py")
-    #########################################
+    #WLAN()
+    ota_updater.download_and_install_update_if_available()
     MQTT()
     topic_publish = "Energie-Sparer-Daten"
     message_publish = TempMessung()
