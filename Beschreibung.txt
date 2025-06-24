@@ -1,0 +1,7 @@
+Webserver mit dem Programmpfad starten:
+
+python -m http.server 80 --directory "C:\ETS24_Programme_Mikrocontroller\O.T.A"
+
+Programm im Webserver aufrufen
+
+http://localhost/main.py
