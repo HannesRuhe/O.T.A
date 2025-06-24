@@ -42,7 +42,7 @@ ssid = "BZTG-IoT"
 password = "WerderBremen24"
 
 # MQTT-Broker Verbindungsinformationen
-BROKER = "192.168.1.170" # Zugewiesene IP für den Laptop (Eingabeaufforderung befehl ipconfig; IP4v Adresse)
+BROKER = "10.12.18.217" # Zugewiesene IP für den Laptop (Eingabeaufforderung befehl ipconfig; IP4v Adresse)
 CLIENT_ID = "127.0.0.1"
 
 client = MQTTClient(CLIENT_ID, BROKER)
