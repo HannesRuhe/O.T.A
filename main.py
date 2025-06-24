@@ -162,7 +162,7 @@ while True:
     #WLAN()
     ota_updater.download_and_install_update_if_available()
     MQTT()
-    topic_publish = "Energie-Sparer-Daten"
+    topic_publish = "EnergieSparerDaten"
     message_publish = TempMessung()
     client.publish(topic_publish, message_publish)
     Disconnect()
