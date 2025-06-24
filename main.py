@@ -166,4 +166,4 @@ while True:
     message_publish = TempMessung()
     client.publish(topic_publish, message_publish)
     Disconnect()
-    deepsleep(55000) # Angabe in Millisekunden
+    deepsleep(5000) # Angabe in Millisekunden
