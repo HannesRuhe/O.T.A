@@ -131,7 +131,8 @@ def TempMessung():
     
     # DHT Sensor aktivieren
     power_pin_dht.value(1)
-    time.sleep(0.5)
+    time.sleep(2)
+
     
     sensor_dht.measure()             # Messung durchführen
     temp = sensor_dht.temperature()  # Temperatur in °C
